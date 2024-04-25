@@ -1,17 +1,23 @@
 package com.ferragnez.party;
 
-import java.util.Scanner;
-
-public class CheckGuest {
-
-	public static void main(String[] args) {
-		String[] invitatedArray = {"Dua Lipa", "Paris Hilton", "Manuel Agnelli", "J-Ax", "Francesco Totti", "Ilary Blasi", 
-				"Bebe Vio", "Luis", "Pardis Zarei", "Martina Maccherone", "Rachel Zellic"};
-		System.out.println("Ciao! Benvenuto alla festa dei Ferragnez, dimmi un pò, come ti chiami?");
-		Scanner sc = new Scanner(System.in);
-		String userName = sc.nextLine();
-		sc.close();
-		
+public class Festa {
+	private String partyName;
+	private String[] participants;
+	
+	Festa(String partyName, String[] participants) {
+		this.partyName = partyName;
+		this.participants = participants;
+	}
+	
+	public String getPartyName() {
+		return partyName;
+	}
+	
+	public String allowEntry(String userName) {
+		return checkParticipants(userName) ? userName + " puoi entrare" : userName + " non puoi entrare";
+	}
+	
+	private boolean checkParticipants(String userName) {
 		/*
 		 * Ciclo for funzionante
 		 */
@@ -46,18 +52,19 @@ public class CheckGuest {
 		/*
 		 * Ciclo while funzionante con test in testa
 		 */
-		while (i < invitatedArray.length) {
-			if(userName.equals(invitatedArray[i])) {
-				System.out.println("Bene, puoi entrare. Divertiti!");
-				break;
+		while (i < participants.length) {
+			if(userName.equals(participants[i])) {
+				return true;
 			}  
 			
-			if (i == invitatedArray.length-1) {				
-				System.out.println("Mi dispiace, non puoi entrare. Il tuo nome non è nella lista.");
-			}
 			i++;
 		}
-
+		return false;
 	}
-
+	
+	
+	
+	
+	
+	
 }
